@@ -77,7 +77,223 @@ The 4naly3er report can be found [here](https://github.com/code-423n4/2024-07-ka
 
 
 _Note for C4 wardens: Anything included in this `Automated Findings / Publicly Known Issues` section is considered a publicly known issue and is ineligible for awards._
-## 🐺 C4: Begin Gist paste here (and delete this line)
+
+- Vaults are not meant to handle rewards distribution since rewards are non-linear, can be frontrun if sent to the vault, and not always in the same underlying token. Instead an off-chain indexer should compute the distribution and the DSS can use a Merkle drop to distribute rewards.
+- If an operator initiates unstaking of a vault from a DSS, DSS should stop immediately considering the corresponding vault’s stake for off-chain rewards compute. The withdrawal delay is meant to ensure that the DSS has enough time to slash the vault before it can be withdrawn. Sitting on a queued withdraw doesn't provide a operator any edge.
+- Similarly if a staker starts withdrawal from a vault, the DSS should stop considering those assets for voting weight and rewards
+- Vault implementations and slashing handlers are allowlisted by the owner so the burden of auditing and having processes in place to make sure those two are audited and secure falls on the `OWNER`
+- Leveraging is allowed, an operator can stake a vault in multiple DSSs, so leveraging is allowed. A DSS can choose to ignore an overleveraged vault and jail them if they choose. There’s is still a hard limit on the no. of DSS an operator can register with for gas limitation purposes.
+
+
+
+
+
+✅ SCOUTS: Please format the response above 👆 so its not a wall of text and its readable.
+
+# Overview
+
+[ ⭐️ SPONSORS: add info here ]
+
+## Links
+
+- **Previous audits:**  Need to publish, will add it to the docs page
+  - ✅ SCOUTS: If there are multiple report links, please format them in a list.
+- **Documentation:** docs.karak.network
+- **Website:** 🐺 CA: add a link to the sponsor's website
+- **X/Twitter:** 🐺 CA: add a link to the sponsor's Twitter
+- **Discord:** 🐺 CA: add a link to the sponsor's Discord
+
+---
+
+# Scope
+
+[ ✅ SCOUTS: add scoping and technical details here ]
+
+### Files in scope
+- ✅ This should be completed using the `metrics.md` file
+- ✅ Last row of the table should be Total: SLOC
+- ✅ SCOUTS: Have the sponsor review and and confirm in text the details in the section titled "Scoping Q amp; A"
+
+*For sponsors that don't use the scoping tool: list all files in scope in the table below (along with hyperlinks) -- and feel free to add notes to emphasize areas of focus.*
+
+| Contract | SLOC | Purpose | Libraries used |  
+| ----------- | ----------- | ----------- | ----------- |
+| [contracts/folder/sample.sol](https://github.com/code-423n4/repo-name/blob/contracts/folder/sample.sol) | 123 | This contract does XYZ | [`@openzeppelin/*`](https://openzeppelin.com/contracts/) |
+
+### Files out of scope
+✅ SCOUTS: List files/directories out of scope
+
+## Scoping Q &amp; A
+
+### General questions
+### Are there any ERC20's in scope?: Yes
+
+✅ SCOUTS: If the answer above 👆 is "Yes", please add the tokens below 👇 to the table. Otherwise, update the column with "None".
+
+Any (all possible ERC20s)
+
+
+### Are there any ERC777's in scope?: No
+
+✅ SCOUTS: If the answer above 👆 is "Yes", please add the tokens below 👇 to the table. Otherwise, update the column with "None".
+
+
+
+### Are there any ERC721's in scope?: No
+
+✅ SCOUTS: If the answer above 👆 is "Yes", please add the tokens below 👇 to the table. Otherwise, update the column with "None".
+
+
+
+### Are there any ERC1155's in scope?: No
+
+✅ SCOUTS: If the answer above 👆 is "Yes", please add the tokens below 👇 to the table. Otherwise, update the column with "None".
+
+
+
+✅ SCOUTS: Once done populating the table below, please remove all the Q/A data above.
+
+| Question                                | Answer                       |
+| --------------------------------------- | ---------------------------- |
+| ERC20 used by the protocol              |       🖊️             |
+| Test coverage                           | ✅ SCOUTS: Please populate this after running the test coverage command                          |
+| ERC721 used  by the protocol            |            🖊️              |
+| ERC777 used by the protocol             |           🖊️                |
+| ERC1155 used by the protocol            |              🖊️            |
+| Chains the protocol will be deployed on | Ethereum,Arbitrum,Base,BSC,Optimism,OtherBlast, Mantle, K2(karaks l2 based on op stack)  |
+
+### ERC20 token behaviors in scope
+
+| Question                                                                                                                                                   | Answer |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| [Missing return values](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#missing-return-values)                                                      |   In scope  |
+| [Fee on transfer](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#fee-on-transfer)                                                                  |  In scope  |
+| [Balance changes outside of transfers](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#balance-modifications-outside-of-transfers-rebasingairdrops) | In scope    |
+| [Upgradeability](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#upgradable-tokens)                                                                 |   In scope  |
+| [Flash minting](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#flash-mintable-tokens)                                                              | In scope    |
+| [Pausability](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#pausable-tokens)                                                                      | In scope    |
+| [Approval race protections](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#approval-race-protections)                                              | In scope    |
+| [Revert on approval to zero address](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#revert-on-approval-to-zero-address)                            | Out of scope    |
+| [Revert on zero value approvals](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#revert-on-zero-value-approvals)                                    | Out of scope    |
+| [Revert on zero value transfers](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#revert-on-zero-value-transfers)                                    | Out of scope    |
+| [Revert on transfer to the zero address](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#revert-on-transfer-to-the-zero-address)                    | In scope    |
+| [Revert on large approvals and/or transfers](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#revert-on-large-approvals--transfers)                  | Out of scope    |
+| [Doesn't revert on failure](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#no-revert-on-failure)                                                   |  In scope   |
+| [Multiple token addresses](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#revert-on-zero-value-transfers)                                          | Out of scope    |
+| [Low decimals ( < 6)](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#low-decimals)                                                                 |   In scope  |
+| [High decimals ( > 18)](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#high-decimals)                                                              | In scope    |
+| [Blocklists](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#tokens-with-blocklists)                                                                | Out of scope    |
+
+### External integrations (e.g., Uniswap) behavior in scope:
+
+
+| Question                                                  | Answer |
+| --------------------------------------------------------- | ------ |
+| Enabling/disabling fees (e.g. Blur disables/enables fees) | No   |
+| Pausability (e.g. Uniswap pool gets paused)               |  Yes   |
+| Upgradeability (e.g. Uniswap gets upgraded)               |   Yes  |
+
+
+### EIP compliance checklist
+- DSS contract should comply with ERC-165.
+- Vault is loosely meant to comply with ERC4626 BUT it is async and the async EIP really hasn't been defined as well. Also some vaults, like native restaking, stray away a bit more.
+
+✅ SCOUTS: Please format the response above 👆 using the template below👇
+
+| Question                                | Answer                       |
+| --------------------------------------- | ---------------------------- |
+| src/Token.sol                           | ERC20, ERC721                |
+| src/NFT.sol                             | ERC721                       |
+
+
+# Additional context
+
+## Main invariants
+
+- A vault can be leverage exactly N where N is the number of DSSes that the vault is delegated to.
+- Only the vetoCommittee should be able to cancel a slashing
+- A DSS should be able to slash up to the set percentage per slashing request. Afterwards, they have to wait a cooldown period before a subsequent request.
+- Only DSSs an operator is registered with can slash said operator
+
+
+
+✅ SCOUTS: Please format the response above 👆 so its not a wall of text and its readable.
+
+## Attack ideas (where to focus for bugs)
+Upgradability of Core and vaults.
+
+PAUSABILITY:
+Can contracts be paused by non owner or non manger addresses.
+Each pausing map pauses only the intended functionalities.
+
+STAKING/UNSTAKING:
+Operator/Staker shouldn’t be blocked by the protocol for withdrawal beyond the withdrawal period.
+Operator/Staker must wait the withdrawal period after initiating the withdrawal.
+Only the operator should be able to initiate a stake or unstake operation for its vaults connected to a DSS.
+Only a vault’s shareholder can initiate a redemption from it
+
+SLASHING:
+DSS should be able to slash up to the original set percentage per slashing request.
+An operator or staker shouldn’t be able to frontrun a slashing aside from an already queued operation that meant they stopped being rewarded.
+Only the vetoCommittee should be able to cancel a slashing.
+Only DSSs the operator is registered with can slash the operator.
+The max slashing percentageWad can be set once by the DSS.
+A DSS must wait the cooldown period before being able to slash again
+
+
+✅ SCOUTS: Please format the response above 👆 so its not a wall of text and its readable.
+
+## All trusted roles in the protocol
+
+N/A
+
+✅ SCOUTS: Please format the response above 👆 using the template below👇
+
+| Role                                | Description                       |
+| --------------------------------------- | ---------------------------- |
+| Owner                          | Has superpowers                |
+| Administrator                             | Can change fees                       |
+
+## Describe any novel or unique curve logic or mathematical models implemented in the contracts:
+
+N/A
+
+✅ SCOUTS: Please format the response above 👆 so its not a wall of text and its readable.
+
+## Running tests
+
+git clone [url]
+foundryup
+optional: install pnpm https://pnpm.io/installation
+pnpm install
+forge build 
+forge test --gas-report
+
+✅ SCOUTS: Please format the response above 👆 using the template below👇
+
+```bash
+git clone https://github.com/code-423n4/2023-08-arbitrum
+git submodule update --init --recursive
+cd governance
+foundryup
+make install
+make build
+make sc-election-test
+```
+To run code coverage
+```bash
+make coverage
+```
+To run gas benchmarks
+```bash
+make gas
+```
+
+✅ SCOUTS: Add a screenshot of your terminal showing the gas report
+✅ SCOUTS: Add a screenshot of your terminal showing the test coverage
+
+## Miscellaneous
+Employees of Karak and employees' family members are ineligible to participate in this audit.
 
 
 
