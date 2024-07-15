@@ -239,6 +239,14 @@ To run code coverage
 forge coverage --ir-minimum
 ```
 
+![](https://github.com/user-attachments/assets/cb54f722-4684-4858-9a18-3bf9cbca244e)
+
+![](https://github.com/user-attachments/assets/eaefe6bb-93b4-4599-83d8-93b5879f1bac)
+
+![](https://github.com/user-attachments/assets/72d0ac90-da12-424b-8928-2b00d9baaff0)
+
+![](https://github.com/user-attachments/assets/f1253148-6127-4f6b-a130-8646c21e9f7b)
+
 ## Miscellaneous
 
 Employees of Karak and employees' family members are ineligible to participate in this audit.
