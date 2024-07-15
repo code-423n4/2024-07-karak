@@ -1,0 +1,11 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "extends": ["//"],
+    "pipeline": {
+        "build": {
+            "dependsOn": ["^build"],
+            "inputs": ["lib/**", "src/**", "buildTsArtifacts.ts"],
+            "outputs": ["out/**", "ts-artifacts/**", "index.ts", "cache/**"]
+        }
+    }
+}
