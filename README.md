@@ -74,8 +74,6 @@ Some of the checklists in this doc are for **C4 (🐺)** and some of them are fo
 
 The 4naly3er report can be found [here](https://github.com/code-423n4/2024-07-karak/blob/main/4naly3er-report.md).
 
-
-
 _Note for C4 wardens: Anything included in this `Automated Findings / Publicly Known Issues` section is considered a publicly known issue and is ineligible for awards._
 
 - Vaults are not meant to handle rewards distribution since rewards are non-linear, can be frontrun if sent to the vault, and not always in the same underlying token. Instead an off-chain indexer should compute the distribution and the DSS can use a Merkle drop to distribute rewards.
@@ -83,12 +81,7 @@ _Note for C4 wardens: Anything included in this `Automated Findings / Publicly K
 - Similarly if a staker starts withdrawal from a vault, the DSS should stop considering those assets for voting weight and rewards
 - Vault implementations and slashing handlers are allowlisted by the owner so the burden of auditing and having processes in place to make sure those two are audited and secure falls on the `OWNER`
 - Leveraging is allowed, an operator can stake a vault in multiple DSSs, so leveraging is allowed. A DSS can choose to ignore an overleveraged vault and jail them if they choose. There’s is still a hard limit on the no. of DSS an operator can register with for gas limitation purposes.
-
-
-
-
-
-✅ SCOUTS: Please format the response above 👆 so its not a wall of text and its readable.
+- Vault are loosely compliant with ERC4626
 
 # Overview
 
@@ -195,15 +188,9 @@ Any (all possible ERC20s)
 
 
 ### EIP compliance checklist
+
 - DSS contract should comply with ERC-165.
 - Vault is loosely meant to comply with ERC4626 BUT it is async and the async EIP really hasn't been defined as well. Also some vaults, like native restaking, stray away a bit more.
-
-✅ SCOUTS: Please format the response above 👆 using the template below👇
-
-| Question                                | Answer                       |
-| --------------------------------------- | ---------------------------- |
-| src/Token.sol                           | ERC20, ERC721                |
-| src/NFT.sol                             | ERC721                       |
 
 
 # Additional context
@@ -247,18 +234,9 @@ A DSS must wait the cooldown period before being able to slash again
 
 N/A
 
-✅ SCOUTS: Please format the response above 👆 using the template below👇
-
-| Role                                | Description                       |
-| --------------------------------------- | ---------------------------- |
-| Owner                          | Has superpowers                |
-| Administrator                             | Can change fees                       |
-
 ## Describe any novel or unique curve logic or mathematical models implemented in the contracts:
 
 N/A
-
-✅ SCOUTS: Please format the response above 👆 so its not a wall of text and its readable.
 
 ## Running tests
 
