@@ -1,11 +1,12 @@
 # Karak audit details
 
-- Total Prize Pool: $55000 in USDC
-  - HM awards: $37800 in USDC
-  - QA awards: $1500 in USDC
-  - Judge awards: $8000 in USDC
-  - Validator awards: XXX XXX USDC (Notion: Triage fee - final)
+- Total Prize Pool: $55,500 in USDC
+  - HM awards: $37,800 in USDC
+  - QA awards: $1,500 in USDC
+  - Judge awards: $6,500 in USDC
+  - Validator awards: $3,200 in USDC
   - Scout awards: $500 in USDC
+  - Mitigation Review: $6,000 in USDC (Opportunity goes to top 3 backstage wardens based on placement in this audit who RSVP.)
 - Join [C4 Discord](https://discord.gg/code4rena) to register
 - Submit findings [using the C4 form](https://code4rena.com/contests/2024-07-karak/submit)
 - [Read our guidelines for more details](https://docs.code4rena.com/roles/wardens)
