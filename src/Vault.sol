@@ -218,30 +218,43 @@ contract Vault is ERC4626, Initializable, Ownable, Pauser, ReentrancyGuard, ExtS
     /* ======================================== */
 
     /* ============ VIEW FUNCTIONS ============ */
+    /// @notice Fetches name of the vault token
     function name() public view override(ERC20, IKarakBaseVault) returns (string memory) {
         return _config().name;
     }
 
+    /// @notice Fetches symbol of the vault token
     function symbol() public view override(ERC20, IKarakBaseVault) returns (string memory) {
         return _config().symbol;
     }
 
+    /// @notice Fetches underlying asset of the vault
     function asset() public view override(ERC4626, IKarakBaseVault) returns (address) {
         return _config().asset;
     }
 
+    /// @notice Fetches vault config
     function vaultConfig() public pure returns (VaultLib.Config memory) {
         return _config();
     }
 
+    /// @notice Fetches the next withdrawal nonce of the staker
+    /// @param staker the address of the staker
     function getNextWithdrawNonce(address staker) public view returns (uint256) {
         return _state().stakerToWithdrawNonce[staker];
     }
 
+    /// @notice Checks if the withdrawal is pending for given nonce
+    /// @param staker address of the staker
+    /// @param _withdrawNonce withdrawal nonce of the staker at the time of withdrawal
     function isWithdrawalPending(address staker, uint256 _withdrawNonce) public view returns (bool) {
         return _state().withdrawalMap[WithdrawLib.calculateWithdrawKey(staker, _withdrawNonce)].start > 0;
     }
 
+    /// @notice Fetches queued withdrawal metadata for given nonce
+    /// @param staker address of the staker
+    /// @param _withdrawNonce withdrawal nonce of the staker at the time of withdrawal
+    /// @return QueuedWithdrawal params
     function getQueuedWithdrawal(address staker, uint256 _withdrawNonce)
         public
         view
@@ -250,14 +263,17 @@ contract Vault is ERC4626, Initializable, Ownable, Pauser, ReentrancyGuard, ExtS
         return _state().withdrawalMap[WithdrawLib.calculateWithdrawKey(staker, _withdrawNonce)];
     }
 
+    /// @notice Total underlying assets deposited in vault
     function totalAssets() public view override(ERC4626, IKarakBaseVault) returns (uint256) {
         return super.totalAssets();
     }
 
+    /// @notice owner of the vault
     function owner() public view override(Ownable, IVault) returns (address) {
         return super.owner();
     }
 
+    /// @notice decimals of the vault tokens
     function decimals() public view override(ERC4626, IKarakBaseVault) returns (uint8) {
         return _config().decimals;
     }
@@ -311,6 +327,7 @@ contract Vault is ERC4626, Initializable, Ownable, Pauser, ReentrancyGuard, ExtS
 
     /* ============== OVERRIDES =============== */
 
+    /// @notice will revert
     function withdraw(uint256 assets, address to, address owner)
         public
         override
@@ -327,6 +344,7 @@ contract Vault is ERC4626, Initializable, Ownable, Pauser, ReentrancyGuard, ExtS
         revert NotImplemented();
     }
 
+    /// @notice will revert
     function redeem(uint256 shares, address to, address owner)
         public
         override

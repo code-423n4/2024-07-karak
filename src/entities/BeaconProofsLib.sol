@@ -71,21 +71,26 @@ library BeaconProofs {
     }
 
     function validateValidatorProof(
-        uint64 validatorIndex,
+        uint40 validatorIndex,
         bytes32[] calldata validatorFields,
         bytes calldata validatorProof,
         bytes32 beaconStateRoot
     ) internal view {
-        if (validatorFields.length != NUM_FIELDS) revert InvalidValidatorFields();
+        if (validatorFields.length != NUM_FIELDS) revert InvalidValidatorFieldsLength();
 
         bytes32 validatorRoot = Merkle.merkleizeSha256(validatorFields);
+
+        // Calculate the index for validator proof verification
+        // Shift the container index left by the sum of validator height and one, then combine with the validator index
         uint256 index = (CONTAINER_IDX << (VALIDATOR_HEIGHT + 1)) | uint256(validatorIndex);
 
-        if (
-            validatorProof.length != 32 * ((VALIDATOR_HEIGHT + 1) + BEACON_STATE_HEIGHT)
-                || !Merkle.verifyInclusionSha256(validatorProof, beaconStateRoot, validatorRoot, index)
-        ) {
-            revert InvalidValidatorFieldsProof();
+        // Validate the length of the validator proof
+        if (validatorProof.length != 32 * ((VALIDATOR_HEIGHT + 1) + BEACON_STATE_HEIGHT)) {
+            revert InvalidValidatorFieldsProofLength();
+        }
+        // Validate the inclusion of the validator root in the beacon state root
+        if (!Merkle.verifyInclusionSha256(validatorProof, beaconStateRoot, validatorRoot, index)) {
+            revert InvalidValidatorFieldsProofInclusion();
         }
     }
 
@@ -126,11 +131,11 @@ library BeaconProofs {
 
         /// Extract the individual validator's balance from the `balanceRoot`
         uint256 bitShiftAmount = (validatorIndex % 4) * 64;
-        return fromLittleEndianUint64(bytes32((uint256(proof.balanceRoot) << bitShiftAmount))) * 1 gwei;
+        return uint256(fromLittleEndianUint64(bytes32((uint256(proof.balanceRoot) << bitShiftAmount)))) * 1 gwei;
     }
 
     function getEffectiveBalanceWei(bytes32[] memory validatorFields) internal pure returns (uint256) {
-        return fromLittleEndianUint64(validatorFields[BALANCE_IDX]) * 1 gwei;
+        return uint256(fromLittleEndianUint64(validatorFields[BALANCE_IDX])) * 1 gwei;
     }
 
     function getPubkeyHash(bytes32[] calldata validatorFields) external pure returns (bytes32) {

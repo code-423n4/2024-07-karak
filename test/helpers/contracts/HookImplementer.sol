@@ -9,6 +9,7 @@ contract HookImplementer is IHook {
 
     constructor() {
         supportedInterface[IHook.hook.selector] = true;
+        supportedInterface[IHook.hookHighGasUsage.selector] = true;
     }
 
     function hook(address arbitraryAddress, bool shouldSucceed, bytes memory arbitraryData) external {
@@ -19,9 +20,28 @@ contract HookImplementer is IHook {
         }
     }
 
-    function supportsInterface(bytes4 interfaceId) public view override returns (bool) {
+    /// @notice function with infinte gas usage
+    function hookHighGasUsage() external {
+        callCount++;
+        uint256 j = 0;
+        while (true) {
+            j++;
+        }
+    }
+
+    function supportsInterface(bytes4 interfaceId) public view virtual returns (bool) {
         return supportedInterface[interfaceId];
     }
 
     error ForcedFailure(uint256 arbitraryNumber);
+}
+
+contract HookHighGasSupportsInterfaceImpl is HookImplementer {
+    function supportsInterface(bytes4) public pure override returns (bool) {
+        uint256 j = 0;
+        while (true) {
+            j++;
+        }
+        return true;
+    }
 }

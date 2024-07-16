@@ -11,9 +11,11 @@ contract HookCaller {
     uint32 hookCallGasLimit = 500_000;
     uint32 supportsInterfaceGasLimit = 20_000;
     uint32 hookGasBuffer = 40_000;
+    address hookHighGasUsageForSupInterfaceImpl;
 
-    constructor(address _hookImpl) {
+    constructor(address _hookImpl, address _hookHighGasUsageForSupInterfaceImpl) {
         hookImpl = _hookImpl;
+        hookHighGasUsageForSupInterfaceImpl = _hookHighGasUsageForSupInterfaceImpl;
     }
 
     function callHookSuccessfully(address arbitraryAddress, bytes memory arbitraryData) external returns (bool) {
@@ -48,6 +50,54 @@ contract HookCaller {
             IERC165(hookImpl),
             abi.encodeWithSelector(IHook.hook.selector, arbitraryAddress, false, arbitraryData),
             IHook.hook.selector,
+            true, // ignoreFailure
+            hookCallGasLimit,
+            supportsInterfaceGasLimit,
+            hookGasBuffer
+        );
+    }
+
+    function callHookWithSuportsInterfaceHighGasUsage(address arbitraryAddress, bytes memory arbitraryData)
+        external
+        returns (bool)
+    {
+        // reverts due to gas usage of `supportsInterface` exceeding `supportsInterfaceGasLimit`
+        return HookLib.callHookIfInterfaceImplemented(
+            IERC165(hookHighGasUsageForSupInterfaceImpl),
+            abi.encodeWithSelector(IHook.hook.selector, arbitraryAddress, false, arbitraryData),
+            IHook.hook.selector,
+            true, // ignoreFailure
+            hookCallGasLimit,
+            supportsInterfaceGasLimit,
+            hookGasBuffer
+        );
+    }
+
+    function callHookWithHookHighGasUsage(address arbitraryAddress, bytes memory arbitraryData)
+        external
+        returns (bool)
+    {
+        // reverts due to gas usage of `hookHighGasUsage` exceeding `hookCallGasLimit`
+        return HookLib.callHookIfInterfaceImplemented(
+            IERC165(hookImpl),
+            abi.encodeWithSelector(IHook.hookHighGasUsage.selector, arbitraryAddress, false, arbitraryData),
+            IHook.hookHighGasUsage.selector,
+            false, // ignoreFailure
+            hookCallGasLimit,
+            supportsInterfaceGasLimit,
+            hookGasBuffer
+        );
+    }
+
+    function callHookWithHookHighGasUsageAndIgnoreFailure(address arbitraryAddress, bytes memory arbitraryData)
+        external
+        returns (bool)
+    {
+        // reverts due to gas usage of `hookHighGasUsage` exceeding `hookCallGasLimit`
+        return HookLib.callHookIfInterfaceImplemented(
+            IERC165(hookImpl),
+            abi.encodeWithSelector(IHook.hookHighGasUsage.selector, arbitraryAddress, false, arbitraryData),
+            IHook.hookHighGasUsage.selector,
             true, // ignoreFailure
             hookCallGasLimit,
             supportsInterfaceGasLimit,

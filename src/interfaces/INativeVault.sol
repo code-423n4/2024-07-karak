@@ -69,6 +69,8 @@ interface INativeVault is IKarakBaseVault {
     /* ============ VIEW FUNCTIONS ============ */
     function withdrawableWei(address nodeOwner) external view returns (uint256);
 
+    function activeValidatorCount(address nodeOwner) external view returns (uint256);
+
     function getNextWithdrawNonce(address nodeOwner) external view returns (uint256);
 
     function isWithdrawalPending(address nodeOwner, uint256 withdrawNonce) external view returns (bool);

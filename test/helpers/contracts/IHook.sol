@@ -5,4 +5,5 @@ import "@openzeppelin/contracts/interfaces/IERC165.sol";
 
 interface IHook is IERC165 {
     function hook(address arbitraryAddress, bool shouldSucceed, bytes memory arbitraryData) external;
+    function hookHighGasUsage() external;
 }

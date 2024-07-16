@@ -348,6 +348,10 @@ contract NativeVault is ERC4626, IBeacon, Pauser, INativeVault, OwnableRoles, Re
             Math.min(convertToAssets(balanceOf(nodeOwner)), _state().ownerToNode[nodeOwner].withdrawableCreditedNodeETH);
     }
 
+    function activeValidatorCount(address nodeOwner) public view nodeExists(nodeOwner) returns (uint256) {
+        return _state().ownerToNode[nodeOwner].activeValidatorCount;
+    }
+
     function getNextWithdrawNonce(address nodeOwner) public view returns (uint256) {
         return _state().nodeOwnerToWithdrawNonce[nodeOwner];
     }

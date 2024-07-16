@@ -37,6 +37,9 @@ interface ICore {
     function cancelSlashing(SlasherLib.QueuedSlashing memory queuedSlashing) external;
     function finalizeSlashing(SlasherLib.QueuedSlashing memory queuedSlashing) external;
     function allowlistVaultImpl(address vaultImpl) external;
+    function registerDSS(uint256 maxSlashablePercentageWad) external;
+    function setGasValues(uint32 _hookCallGasLimit, uint32 _hookGasBuffer, uint32 _supportsInterfaceGasLimit)
+        external;
 
     /* ======================================== */
 

@@ -137,7 +137,7 @@ contract Core is IBeacon, ICore, OwnableRoles, Initializable, ReentrancyGuard, P
         CoreLib.Storage storage self = _self();
         self.checkIfOperatorIsRegInRegDSS(operator, vaultStakeUpdateRequest.dss);
         updatedStake = self.requestUpdateVaultStakeInDSS(vaultStakeUpdateRequest, self.nonce++, operator);
-        emit RequestedStakeUpdate(operator, vaultStakeUpdateRequest);
+        emit RequestedStakeUpdate(updatedStake);
     }
 
     /// @notice Allows anyone to finish the queued request for an operator to update assets delegated to a DSS
@@ -289,6 +289,8 @@ contract Core is IBeacon, ICore, OwnableRoles, Initializable, ReentrancyGuard, P
         return _self().assetSlashingHandlers[asset] != address(0);
     }
 
+    /// @notice checks whether the given `vaultImplementation` is allowlisted or not
+    /// @param vaultImpl address of the implementaion
     function isVaultImplAllowListed(address vaultImpl) public view returns (bool) {
         return _self().isVaultImplAllowlisted(vaultImpl);
     }

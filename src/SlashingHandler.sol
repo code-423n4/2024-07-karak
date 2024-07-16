@@ -27,6 +27,9 @@ contract SlashingHandler is Initializable, Ownable, ISlashingHandler {
         _disableInitializers();
     }
 
+    /// @notice initializes the slashingHandler: sets owner, list of supported assets
+    /// @param owner address of the owner
+    /// @param _supportedAssets array of assets can be slashed by the slashinh handler
     function initialize(address owner, IERC20[] calldata _supportedAssets) external initializer {
         _initializeOwner(owner);
         Config storage config = _config();
@@ -35,10 +38,17 @@ contract SlashingHandler is Initializable, Ownable, ISlashingHandler {
         }
     }
 
+    /// @notice Adds the token to list of supported assets
+    /// @param token address of the token to be added to the list of supported assets
     function addSlashableToken(IERC20 token) external onlyOwner {
         _config().supportedAssets[token] = true;
     }
 
+    /// @notice slashes the specified amount of the token
+    /// The vault needs to give approval to the slashing handler prior to slashing
+    /// Pulls the assets form the vault and send them to address(0)
+    /// @param token address of the token to be slashed
+    /// @param amount quantity of assets to be slashed
     function handleSlashing(IERC20 token, uint256 amount) external {
         if (amount == 0) revert ZeroAmount();
         if (!_config().supportedAssets[token]) revert UnsupportedAsset();

@@ -36,7 +36,7 @@ event Slashed(uint256 assets);
 
 event FinalizedSlashing(address finisher, SlasherLib.QueuedSlashing queuedSlashing);
 
-event RequestedStakeUpdate(address operator, Operator.StakeUpdateRequest updateRequest);
+event RequestedStakeUpdate(Operator.QueuedStakeUpdate updateRequest);
 
 event CanceledStakeUpdate(address operator, bytes32 stakeHash);
 
