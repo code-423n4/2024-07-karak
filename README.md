@@ -103,39 +103,30 @@ See [scope.txt](https://github.com/code-423n4/2024-07-karak/blob/main/scope.txt)
 
 ### Files in scope
 
-|File                                           |    blank    | comment    |      code|
-|-----------------------------------------------|-------------|------------|----------
-|src/NativeVault.sol                            |      111    |      77    |       443|
-|src/Vault.sol                                  |       55    |      62    |       229|
-|src/Core.sol                                   |       49    |     116    |       224|
-|src/entities/Operator.sol                      |       27    |       9    |       200|
-|src/entities/SlasherLib.sol                    |       19    |       6    |       160|
-|src/entities/NativeVaultLib.sol                |       27    |      31    |       135|
-|src/entities/CoreLib.sol                       |       22    |       9    |       133|
-|src/entities/BeaconProofsLib.sol               |       25    |       5    |       117|
-|src/entities/MerkleProofs.sol                  |        6    |      71    |        87|
-|src/interfaces/Errors.sol                      |        9    |      11    |        81|
-|src/entities/HookLib.sol                       |       10    |      31    |        63|
-|src/entities/Pauser.sol                        |       20    |       4    |        56|
-|src/interfaces/Constants.sol                   |       13    |       7    |        49|
-|src/interfaces/Events.sol                      |       39    |       3    |        45|
-|src/utils/CommonUtils.sol                      |        5    |       7    |        43|
-|src/interfaces/INativeVault.sol                |       21    |      33    |        40|
-|src/SlashingHandler.sol                        |       11    |       7    |        38|
-|src/interfaces/ICore.sol                       |        5    |       5    |        38|
-|src/NativeNode.sol                             |       11    |      14    |        36|
-|src/entities/VaultLib.sol                      |        6    |       2    |        31|
-|src/Querier.sol                                |        6    |       9    |        28|
-|src/interfaces/IKarakBaseVault.sol             |       11    |       5    |        23|
-|src/SlashStore.sol                             |        7    |       9    |        21|
-|src/entities/CoreStorageSlots.sol              |        7    |       5    |        18|
-|src/interfaces/IVault.sol                      |        3    |       5    |        18|
-|src/interfaces/IDSS.sol                        |        4    |       2    |        13|
-|src/utils/ExtSloads.sol                        |        4    |       5    |        13|
-|src/entities/Withdraw.sol                      |        2    |       1    |        12|
-|src/interfaces/INativeNode.sol                 |        4    |      14    |         7|
-|src/interfaces/ISlashingHandler.sol            |        2    |       1    |         6|
-|SUM:                                           |      541    |     566    |      2407|
+| File                              | Lines | nLines | nSLOC |
+|-----------------------------------|-------|--------|-------|
+| src/SlashingHandler.sol           | 56    | 56     | 38    |
+| src/SlashStore.sol                | 37    | 37     | 21    |
+| src/Vault.sol                     | 346   | 288    | 171   |
+| src/Core.sol                      | 389   | 335    | 170   |
+| src/Querier.sol                   | 43    | 43     | 28    |
+| src/NativeVault.sol               | 631   | 551    | 363   |
+| src/NativeNode.sol                | 61    | 56     | 31    |
+| src/utils/CommonUtils.sol         | 55    | 55     | 43    |
+| src/entities/Pauser.sol           | 80    | 80     | 56    |
+| src/entities/Operator.sol         | 236   | 197    | 161   |
+| src/entities/BeaconProofsLib.sol  | 147   | 135    | 105   |
+| src/entities/HookLib.sol          | 104   | 87     | 46    |
+| src/entities/CoreStorageSlots.sol | 30    | 30     | 18    |
+| src/entities/Withdraw.sol         | 15    | 15     | 12    |
+| src/entities/VaultLib.sol         | 39    | 35     | 27    |
+| src/entities/CoreLib.sol          | 164   | 134    | 103   |
+| src/entities/SlasherLib.sol       | 185   | 165    | 140   |
+| src/entities/MerkleProofs.sol     | 164   | 148    | 71    |
+| src/entities/NativeVaultLib.sol   | 193   | 178    | 120   |
+| src/utils/ExtSloads.sol           | 22    | 22     | 13    |
+| Totals                            | 2997  | 2647   | 1737  |
+
 
 ## Scoping Q &amp; A
 
