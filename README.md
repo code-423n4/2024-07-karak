@@ -34,9 +34,9 @@ Karak Restaking is a protocol that allows users to restake their assets by direc
 ## Links
 
 - **Previous audits:**
-  - https://github.com/code-423n4/2024-07-karak/blob/main/audits/core/Renascence%20-%20Karak%20Core%20Audit%20Report.pdf
-  - https://github.com/code-423n4/2024-07-karak/blob/main/audits/eth-native-restaking/Renascence%20-%20Karak%20Native%20Restaking%20Audit%20Report.pdf
-  - https://github.com/code-423n4/2024-07-karak/blob/main/audits/eth-native-restaking/june-Pashov.pdf
+  - [Renascence Labs (Core)](https://github.com/code-423n4/2024-07-karak/blob/main/audits/core/Renascence%20-%20Karak%20Core%20Audit%20Report.pdf)
+  - [Renascence Labs (Native Restaking)]https://github.com/code-423n4/2024-07-karak/blob/main/audits/eth-native-restaking/Renascence%20-%20Karak%20Native%20Restaking%20Audit%20Report.pdf
+  - [Pashov Audit Group (Native Restaking)[https://github.com/code-423n4/2024-07-karak/blob/main/audits/eth-native-restaking/june-Pashov.pdf]
 - **Documentation:** <https://docs.karak.network/>
 - **Website:** <https://karak.network/>
 - **X/Twitter:** <https://twitter.com/Karak_Network>
