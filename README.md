@@ -21,7 +21,7 @@ _Note for C4 wardens: Anything included in this `Automated Findings / Publicly K
 
 - Vaults are not meant to handle rewards distribution since rewards are non-linear, can be frontrun if sent to the vault, and not always in the same underlying token. Instead an off-chain indexer should compute the distribution and the DSS can use a Merkle drop to distribute rewards.
 - If an operator initiates unstaking of a Vault or NativeVault from a DSS, DSS should stop immediately considering the corresponding vault’s stake for off-chain rewards compute. The withdrawal delay is meant to ensure that the DSS has enough time to slash the vault before it can be withdrawn. Sitting on a queued withdraw doesn't provide a operator any edge.
-- Similarly if a staker starts withdrawal from a vault, the DSS should stop considering those assets for voting weight and rewards
+- Similarly if a staker starts withdrawal from a Vault or NativeVault, the DSS should stop considering those assets for voting weight and rewards
 - Vault implementations and slashing handlers are allowlisted by the owner so the burden of auditing and having processes in place to make sure those two are audited and secure falls on the `OWNER`
 - Leveraging is allowed, an operator can stake a vault in multiple DSSs, so leveraging is allowed. A DSS can choose to ignore an overleveraged vault and jail them if they choose. There’s is still a hard limit on the no. of DSS an operator can register with for gas limitation purposes.
 - Vaults are loosely compliant with ERC4626
