@@ -214,7 +214,9 @@ See [scope.txt](https://github.com/code-423n4/2024-07-karak/blob/main/scope.txt)
 
 ## All trusted roles in the protocol
 
-N/A
+- OWNER - meant to be a timelock that's owned by a multisig.
+- MANAGER - mostly day to day operations, could be multisig or EOA
+- SLASHING VETO COMMITTEE - can overturn/cancel a slashing for any reason, supposed to be a multisig
 
 ## Describe any novel or unique curve logic or mathematical models implemented in the contracts
 
