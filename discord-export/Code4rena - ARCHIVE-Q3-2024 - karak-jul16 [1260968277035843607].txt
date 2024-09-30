@@ -1,0 +1,1341 @@
+==============================================================
+Guild: Code4rena
+Channel: ARCHIVE-Q3-2024 / karak-jul16
+==============================================================
+
+[07/16/2024 07:00] kartoonjoy (pinned)
+👋 Hello and welcome to the audit channel for the $55,500 in USDC **Karak Restaking** audit!
+
+📆 Audit opens 07/16/2024 20:00 (20:00 UTC) and runs through 07/30/2024 20:00 (20:00 UTC) (14 days).
+
+Please give a warm welcome to the Karak team, particularly @dewpey, @Karan, and @Devinder, who will be available for questions either here in the channel or via a PRIVATE thread in the Asia and US timezone(s). 
+
+🤖 **Documentation bot assistance:** For general questions about the codebase, give our documentation bot a try once the audit is live, by tagging `@Docs Wolf` in any thread (private or public) and asking your question. The bot will make its best attempt to answer based on the codebase and documentation, and link you to relevant resources.  
+
+We'll be posting relevant links, documentation, etc. here, so if you intend to participate in this audit, consider enabling notifications for this channel. 🐺 ⏰
+
+Audit Page: https://code4rena.com/audits/2024-07-karak-restaking#top
+
+{Reactions}
+🫡 (10) 
+
+[07/16/2024 07:00] kartoonjoy
+Pinned a message.
+
+
+[07/16/2024 14:16] realfakepicnic
+Gm @🐺Wardens! Reminder: Karak code walk-through in a little over an hour! https://discord.gg/code4rena?event=1262458975514001418
+
+{Reactions}
+✅ (4) 
+
+[07/16/2024 15:39] mihir1808
+will it be recorded ?
+
+{Reactions}
+💯 (2) 
+
+[07/16/2024 16:14] vizay315
+yes
+
+
+[07/16/2024 16:29] .jilt
+Thank you for the walkthrough guys
+
+
+[07/16/2024 16:30] preslaven
+Is the code that we will go through already audited?
+
+{Reactions}
+👀 (2) 
+
+[07/16/2024 16:30] dian.ivanov
+Does anyone know how many sloc ?
+
+
+[07/16/2024 16:31] rafaelnicolau.eth
+1600
+
+{Reactions}
+🫡 (2) 
+
+[07/16/2024 16:31] realfakepicnic
+Yep, our editor is pulling it together now!
+
+{Reactions}
+❤️ (3) 
+
+[07/16/2024 17:14] preslaven
+where will be the record uploaded?
+
+
+[07/16/2024 17:15] kartoonjoy
+in this channel
+
+{Reactions}
+👍 
+
+[07/16/2024 17:15] dewpey (pinned)
+while the live one is edited, here is a previously recorded version of the native restaking walkthrough: https://www.youtube.com/watch?v=_aQpaW9JKEw
+
+{Embed}
+Drew
+https://www.youtube.com/watch?v=_aQpaW9JKEw
+Native Restaking Code Walkthrough
+Code4rena - ARCHIVE-Q3-2024 - karak-jul16 [1260968277035843607].txt_Files/maxresdefault-27124.jpg
+
+{Reactions}
+thankyou (10) 
+
+[07/16/2024 17:15] kartoonjoy
+Pinned a message.
+
+
+[07/16/2024 17:30] realfakepicnic (pinned)
+🚀 Code walk-through recording from this morning: https://youtu.be/_ZeUn0njRS8?si=SnOtRYj-peHrcUIb
+
+{Embed}
+Code4rena
+https://www.youtube.com/watch?v=_ZeUn0njRS8
+Karak C4 Code Walk Through
+Learn about Karak's codebase and what to focus on during the July 16th-July 30th $50,500 audit competition on Code4rena
+Code4rena - ARCHIVE-Q3-2024 - karak-jul16 [1260968277035843607].txt_Files/maxresdefault-7E920.jpg
+
+{Reactions}
+🫡 (4) 
+
+[07/16/2024 17:36] kartoonjoy
+Pinned a message.
+
+
+[07/16/2024 20:02] C4 (pinned)
+**Automated Findings / Publicly Known Issues**
+
+Reminder: all [Automated Findings / Publicly Known Issues](https://github.com/code-423n4/2024-07-karak#automated-findings--publicly-known-issues) are out of scope and ineligible for awards.
+
+
+[07/16/2024 20:05] kartoonjoy
+Pinned a message.
+
+
+[07/16/2024 20:27] 0xfox_
+Would it be possible to get the full scope of the 2 renascence audits since it's not explicitly mentioned in the reports from what i can see?
+
+
+[07/16/2024 21:00] mladenov0603
+Guys where Vault.sol is imported and used? The contract is using `super` keyword but i cannot find the parent contract
+
+
+[07/16/2024 21:07] preslaven
+
+
+{Attachments}
+Code4rena - ARCHIVE-Q3-2024 - karak-jul16 [1260968277035843607].txt_Files/image-01CCF.png
+
+
+[07/16/2024 21:07] preslaven
+Who should I trust to?
+
+
+[07/16/2024 21:13] itsmetechjay
+The artwork has a typo - sorry about that.  The prize pool is $55,500.
+
+{Reactions}
+👍 (2) 
+
+[07/16/2024 23:35] ribarcheto
+man already found a crit, give him $5k!
+
+{Reactions}
+Peepo_Kek (14) 👍 
+
+[07/17/2024 03:21] dewpey
+So Renasance did an individual audit for both
+
+**native restaking includes:**
+entities/BeaconProofsLib.sol
+entities/MerkleProofs.sol
+entities/NativeVaultLib.sol
+NativeNode.sol
+
+**core includes:**
+everything else
+
+{Reactions}
+🙏 
+
+[07/17/2024 03:21] dewpey
+Vault.sol is a standalone contract. It uses erc4626 from solady underneath
+
+
+[07/17/2024 06:08] thegeekywanderer
+You can take a look at our docs for an overview of the protocol https://docs.karak.network/protocol/v2/overview
+
+{Embed}
+https://docs.karak.network/protocol/v2/overview
+Karak Restaking Protocol
+
+
+[07/17/2024 06:11] kartoonjoy
+🤖 **Documentation bot assistance:** For general questions about the codebase, give our documentation bot a try by **tagging `@Docs Wolf` in any thread (private or public)** and asking your question. The bot will make its best attempt to answer based on the codebase and documentation, and link you to relevant resources.
+
+
+[07/17/2024 07:05] souilos
+turned into 2900 ahah
+
+
+[07/17/2024 07:29] wanziskata
+that's lines of code, not nsloc 🤓
+
+
+[07/17/2024 07:46] dian.ivanov
+@Docs Wolf Are there new funcitonalities added since the last audit ?
+
+
+[07/17/2024 08:35] milotruck (pinned)
+Hello everyone, some useful notes for the native restaking part of this codebase:
+- <https://eth2book.info/capella/part2>
+- <https://eips.ethereum.org/EIPS/eip-4895>
+- Beacon proofs:
+  - <https://eips.ethereum.org/EIPS/eip-4788>
+  - <https://github.com/Layr-Labs/eigenlayer-contracts/blob/dev/docs/core/proofs/BeaconChainProofs.md>
+  - <https://github.com/ethereum/consensus-specs#accompanying-documents-can-be-found-in-specs-and-include>
+Good luck!
+
+{Reactions}
+🔥 (31) 🫡 (20) 👑 (10) 
+
+[07/17/2024 10:08] 0xsorrynotsorry
+Pinned a message.
+
+{Reactions}
+thankyou 
+
+[07/17/2024 10:20] kartoonjoy
+You'll want to use doc wolf in a thread only.
+
+{Reactions}
+🫡 
+
+[07/17/2024 10:28] dian.ivanov
+Thank you
+
+{Reactions}
+hi5 
+
+[07/17/2024 12:39] preslaven
+```Failing tests:
+Encountered 1 failing test in test/nativeRestaking/nativeVault.t.sol:NativeVaultTest
+[FAIL. Reason: setup failed: the path test/fixtures/validator_field_data.json is not allowed to be accessed for read operations] setUp() (gas: 0)```
+
+
+[07/17/2024 12:39] preslaven
+anyone else having this issue?
+
+
+[07/17/2024 12:40] ililhunterlili
+you'll have to add this line to foundry.toml
+fs_permissions = [{ access = "read-write", path = "./script/VaultData"}, { access = "read", path = "./test/fixtures" }]
+
+
+[07/17/2024 12:41] preslaven
+10x bro
+
+{Reactions}
+👍 (2) 
+
+[07/17/2024 13:30] thegeekywanderer
+@here one more thing please ensure your evm_version is set to "shanghai" or above for native vault tests to work
+
+{Reactions}
+👍 🔥 
+
+[07/17/2024 13:30] thegeekywanderer
+preferrably "cancun"
+
+
+[07/17/2024 16:07] chonkov
+I still get errors for those 3 tests:
+```
+[FAIL. Reason: BeaconRootFetchError(); counterexample: calldata=0xa03fe2450000000000000000000000000000000000000000000000000000000000000001 args=[0x0000000000000000000000000000000000000000000000000000000000000001]] test_startSnapshot(bytes32) (runs: 0, μ: 0, ~: 0)
+[PASS] test_startSnapshot_noBalanceChange_revert() (gas: 327362)
+[FAIL. Reason: BeaconRootFetchError(); counterexample: calldata=0x061191ec0000000000000000000000000000000000000000000000000000000000000001 args=[0x0000000000000000000000000000000000000000000000000000000000000001]] test_startSnapshot_no_validators(bytes32) (runs: 0, μ: 0, ~: 0)
+[PASS] test_startSnapshot_notNodeOwner_revert(address) (runs: 258, μ: 273773, ~: 273773)
+[PASS] test_transferFrom_revert(address,address,uint256) (runs: 258, μ: 30331, ~: 30331)
+[PASS] test_transfer_revert(address,uint256) (runs: 258, μ: 31015, ~: 31015)
+[FAIL. Reason: BeaconRootFetchError()] test_validateWithdrawalCredentials() (gas: 8797746687696165233)
+```
+
+
+[07/17/2024 16:07] thegeekywanderer
+what is your evm_version?
+
+
+[07/17/2024 16:07] ililhunterlili
+ne more thing please ensure your evm_version is set to "shanghai" or above for native vault tests to work
+
+{Reactions}
+✅ 
+
+[07/17/2024 16:11] chonkov
+I had mispelled "shanghai" in my `foundry.toml` file lol. All good now
+
+{Reactions}
+👍 
+
+[07/17/2024 18:26] 0xarav
+Started a thread.
+
+
+[07/17/2024 19:00] fastchecker_27
+@dewpey @Karan @Devinder pls check my PT
+
+
+[07/17/2024 19:01] thegeekywanderer
+pt as in dm right?
+
+
+[07/17/2024 19:01] thegeekywanderer
+or private thread
+
+
+[07/17/2024 19:01] fastchecker_27
+private thread
+
+
+[07/17/2024 19:01] thegeekywanderer
+dunno with these lingos lol
+
+
+[07/17/2024 19:02] thegeekywanderer
+umm can you tag me again in that thread
+
+
+[07/17/2024 19:02] thegeekywanderer
+might have got lost
+
+
+[07/17/2024 19:02] fastchecker_27
+Are you ok?
+
+
+[07/17/2024 19:04] thegeekywanderer
+🙃 yeah
+
+{Reactions}
+👍 
+
+[07/17/2024 19:11] kartoonjoy (pinned)
+Wardens, just a reminder, direct all questions either to a thread (public or private) or directly in this channel.
+
+If you have more basic questions, please utilize the Docs Wolf first. Thanks!
+
+
+[07/17/2024 19:13] itsmetechjay
+Pinned a message.
+
+
+[07/18/2024 05:07] noro9954
+how rewards flow works ? does the DSS rewards operators and then operators send rewards to stakers ??
+
+
+[07/18/2024 07:03] thegeekywanderer (pinned)
+quoting @dewpey and my answers from a private thread with similar queries:
+> So we made rewards completely off chain since they are non linear and different for each DSS
+> Hence in the vault we added a comment saying it’s not meant for rewards
+> Since building a DSS is completely up to the developers, rewards have also been left for them to decide on how they would like to distribute, in what token they would distribute etc
+> For example, a dss builder might decide to distribute rewards in their own tokens to their operators. Then the operators have the responsibility of further distributing it to the stakers.
+> Here the staker has transparency about the operators and dss they are working with to figure out if they would like to stake in them. Free market.
+
+{Reactions}
+👍 (3) 
+
+[07/18/2024 08:10] kartoonjoy
+Pinned a message.
+
+
+[07/18/2024 16:35] 0xhelium
+I'am getting all this when i run forge test
+
+{Attachments}
+Code4rena - ARCHIVE-Q3-2024 - karak-jul16 [1260968277035843607].txt_Files/image-0CFF0.png
+
+
+[07/18/2024 16:38] 0xhelium
+nvm , had to update foundry , it works
+
+
+[07/18/2024 16:42] _3doc_
+Never forget 👀 https://discord.com/channels/810916927919620096/810931711609143326/1256593479119802438
+
+{Reactions}
+✅ dance_vibe (2) 
+
+[07/19/2024 00:03] stuart_the_minion
+I encounter these 3 failures while running test? Can anybody help me to solve them out?
+
+{Attachments}
+Code4rena - ARCHIVE-Q3-2024 - karak-jul16 [1260968277035843607].txt_Files/image-5C11C.png
+
+
+[07/19/2024 05:12] welith
+change your "evm_version" to "cancun" in foundry.toml
+
+{Reactions}
+👍 
+
+[07/19/2024 05:14] stuart_the_minion
+Wow, amazing, Thanks. 👍 👍 👍
+
+
+[07/19/2024 06:39] thegeekywanderer (pinned)
+@here since a lot of people are having `foundry.toml` issues, here's a foundry.toml that you can use:
+```[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+allow_paths = ["../../node_modules"]
+fs_permissions = [{ access = "read-write", path = "./script/VaultData"}, { access = "read", path = "./test/fixtures" }]
+via_ir = true
+evm_version = "cancun"
+# TODO: Enable before pushing to main
+optimizer = false
+optimizer_runs = 20_000
+solc = "0.8.25"
+runs = 100000
+
+[invariant]
+fail_on_revert = true```
+
+{Reactions}
+🫡 (4) 
+
+[07/19/2024 14:28] fastchecker_27
+@Karan  what is return value of _getParentBlockRoot()? 
+And then would you please give me the source code about `BEACON_ROOTS_ADDRESS`?
+
+
+[07/19/2024 18:16] thegeekywanderer
+parent block root of the slot with the given timestamp
+
+
+[07/19/2024 18:18] thegeekywanderer
+you can reference these links for 4788 https://github.com/lightclient/4788asm/tree/main https://eips.ethereum.org/EIPS/eip-4788
+
+{Embed}
+https://github.com/lightclient/4788asm/tree/main
+GitHub - lightclient/4788asm: Assembly implementation of EIP-4788 s...
+Assembly implementation of EIP-4788 system contract. - lightclient/4788asm
+Code4rena - ARCHIVE-Q3-2024 - karak-jul16 [1260968277035843607].txt_Files/4788asm-BFDB5
+
+{Embed}
+https://eips.ethereum.org/EIPS/eip-4788
+EIP-4788: Beacon block root in the EVM
+Expose beacon chain roots in the EVM
+
+
+[07/19/2024 22:49] 18a6
+https://x.com/milotruck/status/1814393944417190088?t=qPnxDKP0fJsYyKkOa_Z_vQ
+
+these are known issues now, correct?
+
+{Embed}
+https://twitter.com/milotruck/status/1814393944417190088?t=qPnxDKP0fJsYyKkOa_Z_vQ
+MiloTruck (@milotruck) on X
+New report for @Karak_Network is out!
+
+H-08 is one of the more interesting bugs I've found in a while.
+
+TLDR - Combining an understanding of EIP-4788, the beacon chain spec and sneaky bit manipulation to bypass merkle proofs.
+
+Consider checking it out:
+
+https://t.co/wg9PFAIJJb
+Twitter
+
+{Reactions}
+👍 (4) 
+
+[07/19/2024 23:13] chonkov
+Hey, guys. Just double-checking - weird tokens with hooks like those which follow the ERC-777 standard will NOT be used as assets for the vaults or it is possible in the future?
+
+
+[07/20/2024 07:29] bytes032
+updated in the repo
+
+{Reactions}
+👍 (2) thankyou 
+
+[07/20/2024 10:21] 4b69
+@Karan can a supported token be unsupported later?
+
+
+[07/20/2024 11:07] tim_peng.
+Started a thread.
+
+
+[07/20/2024 11:11] thegeekywanderer
+no we don't have any function to "un-allowlist" an asset after its allowlisted in core
+
+
+[07/20/2024 11:12] 4b69
+Oh okay
+
+
+[07/20/2024 11:31] fastchecker_27
+@Karan check my PT
+
+
+[07/20/2024 11:33] thegeekywanderer
+checking. sorry too many notifications might have missed it.
+
+
+[07/20/2024 11:36] fastchecker_27
+@Karan I will be waiting for you.
+
+{Reactions}
+👍 
+
+[07/21/2024 06:58] radev_40364
+Can somebody explain this equation
+
+{Attachments}
+Code4rena - ARCHIVE-Q3-2024 - karak-jul16 [1260968277035843607].txt_Files/image0-CC74D.jpg
+
+
+[07/21/2024 09:24] thegeekywanderer
+the premise for this equation is that ETH in the Native Restaking system can be lying at two places – 
+1. At the NativeNode
+2. On the beacon chain validator
+When a user goes in to take a new snapshot we need to calculate the *net* change in ETH balance in both the places combined. 
+
+Lets say User *A* had a NativeNode *N* with validators *V1*, *V2*, *V3*. At some point of time *t1* the user has restaked a total of 100 ETH in Karak. Which includes the ETH present on all three validators + ETH present on the NativeNode (coming from validator yields periodically) 
+
+They start a new snapshot at *t2* and we need to observe the change in their restaked assets so that we can either 1. mint or 2. burn their share tokens based on which withdraws are calculated. The balance in the balance container of *V1* had changed to 34 ETH. *Note this is not the effective balance rather the balance recorded in the validator balance container*. However, the NativeNode balance has not changed (assume no yield came in at this time)
+Hence, at *t2* they get 2 ETH worth shares minted to them in the NativeVault.
+
+Now, at *t3* they start another snapshot. *But* at t3 the excess balance for validator *V1* has been sweeped to the NativeNode. Assume there is no other change in balances of other validators. So, *delta on beacon validators becomes **-2 ETH*** from previous recorded. However the NativeNode balance has gone up by *+2 ETH* after the sweep. So net change becomes – `(2 + (-2)) = 0`. So no new shares are minted to the user.
+This is how this equation works to keep track of how much ETH belongs to a user.
+
+{Reactions}
+thankyou (3) 🫡 
+
+[07/21/2024 09:44] radev_40364
+Just to clarify:
+1) NativeNode `N` can be connected with many beacon chain validators, but with one karak operator through a single nativeVault
+2) NativeNote only manages the yields received
+
+
+[07/21/2024 09:48] thegeekywanderer
+yes
+
+
+[07/21/2024 09:48] thegeekywanderer
+and only one native node per operator per user
+
+{Reactions}
+👍 
+
+[07/21/2024 12:04] avoloder
+Hi, is there a limit of how many operators can one DSS handle? I understand that there is a limited number of DSSs that one operator can have but is there something vice versa?
+
+
+[07/21/2024 19:25] atharv181
+For `finalizeUpdateVaultStakeInDSS` this is the natspec what does this mean? Both statements look contradictory to me
+
+{Attachments}
+Code4rena - ARCHIVE-Q3-2024 - karak-jul16 [1260968277035843607].txt_Files/image-F608A.png
+
+
+[07/22/2024 00:34] fastchecker_27
+@Karan what is role of `getEffectiveBalanceWei()` of `BeaconProofsLib` and return value?
+
+
+[07/22/2024 07:44] thegeekywanderer
+there is a difference between balance container value and effective balance on beacon chain. Effective balance will always be a maximum of 32ETH since all excess balance over that will eventually be swept out to the withdrawal address i.e. the native node
+
+
+[07/22/2024 14:29] fastchecker_27
+@Karan what is role of `validateSnapshotProofs()`?
+
+{Reactions}
+🙏 
+
+[07/22/2024 16:45] radev_40364
+SlashStore is one per network and the owner is the protocol owner(same as Core's owner), right?
+
+
+[07/23/2024 06:55] thegeekywanderer
+once a user starts a snapshot using _startSnapshot they need to prove the balance of all active validators in their native node to finish the snapshot. This function is for proving the balance of a validator
+
+
+[07/23/2024 07:01] thegeekywanderer
+yeah
+
+
+[07/23/2024 14:06] 0xshaheen
+how this is (was) a valid issue: https://code4rena.com/reports/2024-06-karak-pro-league#h-01-dss-can-slash-more-assets-than-are-allowed-against-a-vault-within-a-single-slashing-event 
+I mean, if a DSS does that than VETO committee will just `cancelSlashing`, right? and if the VETO committee isn't there to interfere these kind of issues then why they even exists? Are there any limitations of VETO committee? All the slashingReqs will not gonna go through or verified by the committee? Should we assume that VETO committee will always do the right job?
+
+
+[07/23/2024 14:53] 0xshaheen
+@Docs Wolf only works in thread buddy
+
+
+[07/23/2024 14:53] xkeywordx
+thx
+
+{Reactions}
+👍 
+
+[07/23/2024 15:09] mylifechangefast.eth_70767
+Sorry  there be an upgrade later  if bugs are found right?
+
+
+[07/23/2024 17:15] mylifechangefast.eth_70767
+And the bugs found in the  last audit were they updated before this contest? @Karan
+
+
+[07/23/2024 17:24] thegeekywanderer
+yeah
+
+{Reactions}
+✅ 
+
+[07/23/2024 17:58] avoloder
+This is an issue not because the VETO committee will not do the job but because the functionality of the smart contract is wrongly implemented allowing dss to slash a vault with more than maxSlashWad which should not be the case, otherwise the variable would not need to exist in the first place
+
+{Reactions}
+👍 (3) 🤔 
+
+[07/24/2024 10:53] radev_40364
+Is there any graph for the beacon proofs tree?
+
+
+[07/24/2024 11:15] coffiasd
+@Karan pls check pt
+
+{Reactions}
+👍 
+
+[07/24/2024 14:11] thegeekywanderer
+we haven't made any diagrams for it yet
+
+{Reactions}
+👍 
+
+[07/24/2024 14:35] billmpjc
+While stakers get to Karak network to restake their assets, they gain XPs accumulated according to the amount of restaked assets.
+I believe this XP management belongs to the protocol itself as it is for stakers. As such, I don't find any relevant part in the codebase.
+
+
+[07/24/2024 14:36] _givn
+Here is an article that does something simpler than Karak, but is a good illustration of the concept: https://ethresear.ch/t/slashing-proofoor-on-chain-slashed-validator-proofs/19421
+
+{Reactions}
+🔥 (3) 
+
+[07/24/2024 14:37] radev_40364
+Thanks
+
+
+[07/24/2024 19:35] dewpey
+xp stuff isn't in scope and is an off-chain service
+
+
+[07/26/2024 11:17] coffiasd
+@Karan where i can get the code of DSS
+
+
+[07/26/2024 11:47] mylifechangefast.eth_70767
+Please @Karan check our PT
+
+
+[07/26/2024 12:03] thegeekywanderer
+Please give me a couple hours of buffer before tagging in the main channel. I check all threads.
+
+{Reactions}
+✅ 
+
+[07/26/2024 12:04] thegeekywanderer
+DSS code is not for us to implement. We will have some example DSSs eventually.
+
+{Reactions}
+👍 (3) 
+
+[07/26/2024 12:12] 0xshaheen
+yea, no cap, he do! Appreciate your assistance ser. Thanks 🙏
+
+{Reactions}
+🤝 
+
+[07/26/2024 17:51] lavizrap_
+hello @everyone, can someone please clarify if a vault can be registered to multiple operators. I can see that an operator can have MAX_VAULTS_PER_OPERATOR but what about the vaults. Do they have a threshold to the number of operators it can add too?
+
+
+[07/26/2024 18:04] olanre_waju
+Each Operator can deploy a vault. So one operator can have multiple vaults deployed.
+
+
+[07/26/2024 18:12] lavizrap_
+i know that but can a vault be registered to multiple operators?
+
+
+[07/26/2024 18:35] olanre_waju
+No, each vault is initialized with the creator(operator)
+
+
+[07/26/2024 20:08] mylifechangefast.eth_70767
+So any slashes made due to fault of staked Eth would be caused from the operator?
+
+
+[07/26/2024 20:10] olanre_waju
+depositors in the valult. In the case of NativeVault, nodeOwners with >1 active validators
+
+
+[07/26/2024 20:12] mylifechangefast.eth_70767
+So in the vault.sol would be depositors while the Native vault would be nodeOwners?
+
+
+[07/26/2024 20:14] olanre_waju
+correct. plus, anyone can deploy a node in the NativeVault,
+
+
+[07/26/2024 20:17] mylifechangefast.eth_70767
+:chefskiss:
+
+
+[07/27/2024 10:47] lavizrap_
+can anyone help me understand this; why cancelSlashing modifier is external. Shouldn't only the veto commitee be able to cancel slashing request? Am i missing some check here?
+
+{Reactions}
+👀 
+
+[07/27/2024 10:53] mylifechangefast.eth_70767
+Modifier?
+
+
+[07/27/2024 10:56] mylifechangefast.eth_70767
+I've not seen any modifier named that, only a function.
+
+
+[07/27/2024 10:56] lavizrap_
+ohh sorry i meant access modifier
+
+
+[07/27/2024 10:57] mylifechangefast.eth_70767
+Huh? No difference with what I said earlier
+
+
+[07/27/2024 10:57] mylifechangefast.eth_70767
+CanselSlashing is a function
+
+
+[07/27/2024 10:58] mylifechangefast.eth_70767
+And it only veto committee who was granted a role for this function
+
+
+[07/27/2024 10:58] mylifechangefast.eth_70767
+So no one can call it
+
+
+[07/27/2024 10:58] mylifechangefast.eth_70767
+Expect the veto c.
+
+
+[07/27/2024 10:59] lavizrap_
+yaa I checked the Core.sol contract. It has onlyRoles modifier.
+
+
+[07/27/2024 11:00] mylifechangefast.eth_70767
+Yh.. Your question has been answered😉
+
+
+[07/27/2024 14:11] golomp3761
+I am a newbie on C4 and I submited my first findig, how do I knows that my finding is valid. Is judge will contact with me if he will have any questions?
+
+
+[07/27/2024 14:17] welith
+You will find out when the report comes out pretty much 😄
+
+
+[07/27/2024 14:18] welith
+You don't get any feedback. If you get the SR role eventually you can see the judging process and escalate
+
+
+[07/27/2024 14:18] golomp3761
+Yeah but what if judge will need some clarification?
+
+
+[07/27/2024 14:19] welith
+Eventually yes, they could contact you, but I doubt it. If the issue is not understandable, it will be invalidated in most cases
+
+
+[07/27/2024 14:20] welith
+You could reach out to someone with SR role to check your issue and eventually escalate on your behalf
+
+
+[07/27/2024 14:45] mylifechangefast.eth_70767
+Hell no🤯
+
+
+[07/27/2024 14:47] welith
+Yep, until you get to SR the process is not that transperant 😄
+
+
+[07/27/2024 14:49] mylifechangefast.eth_70767
+I know, was just acting like @golomp
+
+
+[07/27/2024 14:51] 0xshaheen
+If (finding Valid) ? Your Ethereum Wallet Balance will increase : You stay broke
+
+{Reactions}
+🤣 (8) 😂 (6) 😭 
+
+[07/27/2024 14:54] 0xshaheen
+jk, as explained by fellow warden that you will get know that by the report, Regarding the second part of your question, I recommend writing a thorough report and including a PoC to ensure the judge clearly understands your findings and has no further questions
+
+
+[07/27/2024 15:31] crypt0n3801
+how to get a SR role🤓
+
+
+[07/27/2024 16:11] 18a6
+ironically not get invalidated when not having a SR role
+
+{Reactions}
+🤣 (2) 
+
+[07/27/2024 19:02] mylifechangefast.eth_70767
+You guys.. Haha😂
+
+
+[07/27/2024 19:37] emanherawy
+Hey guys , sorry for the naive question, but i'm wondering if we should ask and discuss all our questions with the Karak team here or we might have a private channel?
+
+
+[07/27/2024 22:27] fulum
+Hey, it depends you can ask questions here but also you can create a private threads and identify the protocols members to ask them questions privately if you prefer
+
+{Reactions}
+🙏🏻 
+
+[07/27/2024 22:28] fulum
+@Karan I ask you questions on a private thread when you have time
+
+{Reactions}
+👍 
+
+[07/28/2024 07:57] kartoonjoy
+🤖 **Documentation bot assistance:** For general questions about the codebase, give our documentation bot a try, by tagging `@Docs Wolf` in any thread (private or public) and asking your question. The bot will make its best attempt to answer based on the codebase and documentation, and link you to relevant resources.
+
+
+[07/28/2024 10:07] emanherawy
+Where in the code can we see reward handling  By DSS or it's out of scope ?  
+> Do we have to accept this  `Similarly if a staker starts withdrawal from a Vault or NativeVault, the DSS should stop considering those assets for voting weight and rewards ` as a truth ?
+
+
+[07/28/2024 10:08] thegeekywanderer
+rewards are out of scope since that is upon a dss to implement.
+
+
+[07/28/2024 10:08] thegeekywanderer
+the latter is a dss' decision.
+
+
+[07/28/2024 10:09] emanherawy
+ok, got your point, to clarify,  by reward handling we mean for the operator in general or stakers ?
+
+
+[07/28/2024 10:11] thegeekywanderer
+reward distribution in general is not scoped out by the protocol currently including operators and stakers since it has a lot of variance in how the DSS wants to distribute rewards. For example, some dss might want to reward in their own tokens.
+
+{Reactions}
+👍🏻 
+
+[07/28/2024 13:23] hex_panda
+@Karan , please check the PTs when you're available. 🙏
+
+{Reactions}
+👍 
+
+[07/28/2024 13:34] atharv181
+All the findings from the previous audits are resolved? @Karan
+
+
+[07/28/2024 14:14] kartoonjoy
+https://discord.com/channels/810916927919620096/1260968277035843607/1265356699901100225
+
+{Reactions}
+👍 
+
+[07/29/2024 03:33] uvicorn
+When will you open reading other people's reports?
+
+
+[07/29/2024 04:37] kartoonjoy
+Did you tag all of the sponsors in your thread? They're not all in the same timezone.
+
+
+[07/29/2024 05:53] 0xfox_
+@dewpey @Karan @Devinder Could you explain why the index is calculated in this way in the `BeaconProofsLib::validateValidatorProof` function, or provide some resource related to this?
+`uint256 index = (CONTAINER_IDX << (VALIDATOR_HEIGHT + 1)) | uint256(validatorIndex);`
+
+
+[07/29/2024 05:54] 0xfox_
+Also if anyone participating has a good explanation please do drop it in here if you wish.
+
+
+[07/29/2024 08:04] 41ar.
+@0xfox try with this one: https://github.com/Layr-Labs/eigenlayer-contracts/blob/dev/docs/core/proofs/BeaconChainProofs.md
+
+{Reactions}
+🙏 (2) 
+
+[07/29/2024 21:33] emanherawy
+any flags I should pass or configuration to make to be able to run tests in `nativeVault.t.sol` ?
+
+
+[07/29/2024 22:49] uvicorn
+@Karan
+
+
+[07/30/2024 03:42] 0xshaheen
+Just make sure to edit the foundry.toml mate:https://discord.com/channels/810916927919620096/1260968277035843607/1263747101985079366
+
+{Reactions}
+🙏🏻 
+
+[07/30/2024 05:11] thegeekywanderer
+I had checked all unread threads can you tag me again on your thread?
+
+
+[07/30/2024 05:11] 0xshaheen
+I think he is asking about final audit report
+
+{Reactions}
+👍 
+
+[07/30/2024 05:13] 0xshaheen
+you are gonna be able to read other people findings only after the final results will be posted and the final report will be published on the C4 website, which can take about 1-2 months. Only SRs (Backstage Wardens) can read reports immediately after the contest
+
+
+[07/30/2024 06:59] emanherawy
+Thank you!
+
+{Reactions}
+👍 
+
+[07/30/2024 08:51] 0x1771_
+hi all, there is many findings from previous audits that are not resolved but the comments in the audit reports say they are resolved
+
+
+[07/30/2024 08:52] 0x1771_
+findings from previous audits = known issues ? right ?
+
+
+[07/30/2024 10:30] emanherawy
+any link on how you are generating the data in the fixtures ,  I want to know how can I add / generate
+
+
+[07/30/2024 10:33] bytes032
+Known issues from previous audits are only in play if the alleviation performed was incorrect. 
+
+If no alleviation is present, we cannot make assumptions on whether they were correctly alleviated or not.
+
+{Reactions}
+🆗 (2) hi5 (2) 
+
+[07/30/2024 20:00] atharv181
+Thank you Karak team for patiently answering our questions. It was fun auditing the protocol.
+
+{Reactions}
+✅ (5) PU_PepeWow (2) chefskiss canto 
+
+[07/30/2024 20:02] C4
+**🚨 AUDIT ALERT**
+
+@🐺Wardens The **Karak Restaking** audit is now closed! Huge thanks to everyone who participated 🔍, whether you submitted a finding or not.
+
+What's next: The sponsor team and judge will review the findings over the next couple of weeks. Feel free to ping a Civics-Admin if you have questions along the way!
+
+{Reactions}
+🫡 (5) 
+
+[08/06/2024 13:04] xkeywordx
+Hello guys, can someone here that has the SR role please DM me?
+
+
+[08/07/2024 00:45] blockchain555
+Hello guys, can someone here that has the SR role please DM me?
+
+
+[08/10/2024 16:56] welith
+👀
+
+{Reactions}
+👀 (5) 
+
+[08/11/2024 01:11] mylifechangefast.eth_70767
+@Tofunmi
+
+
+[08/11/2024 18:05] ivanfitro
+@MiloTruck how is selected if the report has sufficient quality or not? Because I see that the issue #93 first was invalidated but now is valid and I report the same problem but I obtained `insufficient quality report`
+
+
+[08/11/2024 18:38] takarez
+if its in the validation repo, probably from the validator's side, but can raise this during PJQA i believe.
+
+
+[08/11/2024 18:38] ivanfitro
+yes in the validation repo
+
+
+[08/11/2024 18:39] ivanfitro
+where can i raise it? it will be announce in this channel?
+
+
+[08/11/2024 18:39] takarez
+in #📢・sr-updates .
+
+
+[08/11/2024 18:40] ivanfitro
+thank you!
+
+{Reactions}
+👍 (2) 
+
+[08/12/2024 11:28] 0xbnke
+.
+
+
+[08/13/2024 10:51] xkeywordx
+Hello guys, any news here?
+
+
+[08/13/2024 10:51] xkeywordx
+Is there an ETA for when the judging will end? I'm asking because I have no visibility over what happens
+
+
+[08/13/2024 14:32] thebrittfactor
+There are a few more issues before we proceed with PJ QA. Appreciate your patience!
+
+
+[08/14/2024 15:59] tpiliposian
+Hey everyone, quick question:
+A lot of our issues are being marked by the Howlbot-Integration bot as "Insufficient Quality Report," but no one has added any comments or provided any feedback. What does this mean? I believe the reports are of good quality and worth the judge's attention.
+
+{Reactions}
+❤️ 
+
+[08/14/2024 16:01] 0xsl1
+for a way to look for validator's comments refer here:
+https://discord.com/channels/810916927919620096/976603323450941440/1260552184962220105
+
+
+[08/14/2024 16:08] tpiliposian
+Thank you, but there was no info about mines(
+
+
+[08/14/2024 16:13] 0xsl1
+are you sure you're looking in the right place? You should look in closed prs, I can see comments for your team's issues
+
+
+[08/14/2024 16:15] tpiliposian
+I am not sure. Is it here?:
+https://github.com/code-423n4/2024-07-karak-validation/pull/366/files
+
+
+[08/15/2024 07:28] mylifechangefast.eth_70767
+Has PJQA started?
+
+{Reactions}
+✅ (2) 
+
+[08/15/2024 19:40] 18a6
+how much time is left for PJQA?
+
+
+[08/16/2024 09:16] c0pp3rscr3w3r
+yes
+I looked at similarities and thought that the codearena bot just closed reports that werent made from the codearena markdown skeleton. i could be wrong but it was a bummer
+
+
+[08/16/2024 16:47] blockchain555
+when final reuslt?
+
+
+[08/17/2024 04:30] welith
+Why are all the past audit findings marked as out of scope? Pretty much all of the findings that are reported are marked as resolved both by the team and the auditors, but the issues are still present in the codebase. Also, there was no indication in the already known issues that past audit findings are out-of-scope.
+
+{Attachments}
+Code4rena - ARCHIVE-Q3-2024 - karak-jul16 [1260968277035843607].txt_Files/Screenshot_2024-08-17_at_7.30.00-B9EC1.png
+
+
+[08/18/2024 03:23] billmpjc
+I agree with that, issues from past audits have no reason to be considered out-of-scope.
+As it persists with an open vulnerability, it could then be checked for potential risks and mitigations.
+
+
+[08/18/2024 07:57] welith
+Can we get a statement on the above queries? I've raised the question in GitHub as well but I've still got no response.
+
+
+[08/19/2024 19:54] cloudellie
+@0xb0k0 @Bill It's typical for any findings already presented in a previous audit report to be considered publicly known issues and therefore out of scope. 
+
+That doesn't mean the issues aren't valid, just that they are already known to the sponsoring project and therefore have no additional value in being re-submitted. 
+
+Also, anyone could scrape past reports and barrage our submission form with findings from previous audits, thereby inserting loads of duplicates into the competition which would functionally reduce the payouts to zero -- so from a warden standpoint it would not be good EV.
+
+
+[08/20/2024 03:41] welith
+Can you show me where that is documented? I also agree that if there is a statement, specifying that either C4 or the sponsor explicitly do not allow past findings (which are still present in the code) to be out of scope, then none should be presented. However, at least for the current contest all of the findings were marked resolved both by the protocol and the audit teams, but the issues are still present. How are the contestants supposed to not mark them as issues?
+
+
+[08/20/2024 03:52] welith
+I would agree that IF the issue is acknowledged in the report, than OK, the team knows that there is an issue and accept it, but a RESOLVED issue which is confirmed by the audit team, and is still present, sounds like an actual issue to me. Would love to hear your feedback on this.
+
+
+[08/20/2024 11:31] xkeywordx
+Such a black box every time
+
+
+[08/20/2024 11:42] bytes032
+There is no way to check if a warden had reviewed the reports and resubmitted the same things or not, and it opens up the contest to manipulation due to that.
+
+Issues from previous audits are only in play if the alleviation performed was incorrect. Given that no alleviation is present, we cannot make assumptions on whether they were correctly alleviated or not.
+
+{Reactions}
+👍 
+
+[08/20/2024 11:44] bytes032
+Point taken. We will improve the documentation when it comes to this.
+
+{Reactions}
+👍 
+
+[08/20/2024 12:22] welith
+Thanks! Will appreciate some more clarity regarding acknowledged past findings and resolved past findings 🙂
+
+
+[08/20/2024 17:26] cloudellie
+Started a thread.
+
+
+[08/21/2024 21:07] 18a6
+is karak team available? I need an answer to a simple yes/no question, I shared it here https://discord.com/channels/810916927919620096/1263517864007307275/1275924945804726414
+
+
+[08/22/2024 18:58] thebrittfactor
+🤑 🎉  Awards for **Karak Restaking**:
+
+$21,737.28 USDC » @KupiaSec 
+$5,403.34 USDC » @0xCiphky 
+$1,846.74 USDC » 20centclub (@tpiliposian, @M3talDrag0n and @Skylice) 
+$1,785.89 USDC » @sl1 
+$1,350.32 USDC » @rbserver 
+$1,335.29 USDC » @givn 
+$1,231.14 USDC » @lanrebayode77 
+$924.50 USDC » @zanderbyte 
+$711.16 USDC » @anonymous_joe 
+$519.98 USDC » @takarez 
+$492.15 USDC » @valkvalue 
+$492.15 USDC » @Shaheen 
+$473.68 USDC » @ZanyBonzy 
+$315.79 USDC » @Rhaydden 
+$268.11 USDC » @Fulum 
+$206.24 USDC » @ayden 
+$206.24 USDC » @trachev 
+
+🏁 Findings summary
+-------------------------------------
+4 High risk findings
+5 Med risk findings
+126 wardens contributed
+
+Top Hunter: KupiaSec
+Top Gatherer: KupiaSec
+Top QA report: rbserver
+
+Awards will be distributed on Polygon. Congratulations all!  💸 💸 💸
+
+⚠️ Awardees, be sure to review [this announcement](https://discord.com/channels/810916927919620096/810929015509483554/1272625452909072415) and fill in your tax info if you haven't already. This must be completed within 30 days (i.e. before Saturday, 21 September 2024 19:00) to receive your award distribution for this audit.
+
+*Note: If you participated in this audit and don’t see your name on this list, please wait until the report is published and the findings repo is made public to check on your submissions.*
+
+{Reactions}
+hi5 (7) 🚀 (7) 🎉 (8) 
+
+[08/22/2024 19:10] milotruck
+Congrats everyone, was a pleasure to judge!
+
+{Reactions}
+🙌 (9) 
+
+[08/22/2024 19:18] tpiliposian
+Congrats all, thanks @MiloTruck for judging
+
+
+[08/22/2024 19:38] takarez
+great effort, dunno why my last comment was never reviewed tho.
+
+
+[08/22/2024 21:04] fulum
+Good job all, thanks @MiloTruck for judging
+
+
+[08/23/2024 01:05] eittah
+Hi @MiloTruck , thanks for judging, could you please check issue#105  
+ExtSloads Function Returns Empty Array, Preventing Querier Contract from Fetching Vaults Queued for Withdrawal 
+https://github.com/code-423n4/2024-07-karak-validation/issues/105
+
+{Reactions}
+👀 
+
+[08/23/2024 07:39] xkeywordx
+Guys, where can I check the list with the final findings and where can I check why my findings were invalidated?
+
+
+[08/23/2024 07:43] xkeywordx
+Now that the contest is done, I would like to know if a DSS can register as an Operator to itself is the intended functionality of the protocol?
+
+I submitted this and since I have no visibility in the judging phase I have no idea why it got invalidated.
+
+I assume this is the intended behavior of the protocol then.
+
+My question is though, isn't this a "conflict" between the DSS and Operators since the DSS can distribute the rewards arbitrarily?
+
+If a DSS registers as an Operstor to itself, it can distribute the rewards to itself instead of rewarding honest Operators.
+
+I would like to understand why this is not a valid finding. I read the full docs on Karak's website multiple times and it is never stated anywhere that a DSS can register as an Operator to itself. It seems that DSS and Operators must be 2 different entities, and not the same one.
+
+
+[08/23/2024 07:50] xkeywordx
+@Dravee @Koolex or maybe someone from Karak, can you please clarify how this is supposed to work?
+
+
+[08/23/2024 07:53] xkeywordx
+Or @MiloTruck since it looks like you were the judge.
+
+
+[08/23/2024 07:57] xkeywordx
+The DSS is also supposed to slash malicious Operators, but if the Operator and the DSS are the same, then there is no point for the Operator to behave honestly. It can behave maliciously because it will never get slashed.
+
+
+[08/23/2024 13:07] thebrittfactor
+🇮 Reminder: Please wait until the audit report has been published before you disclose any findings or submissions publicly.
+
+{Reactions}
+☝️ 
+
+[08/25/2024 09:00] ubl4nk
+Wait until the report has been published, then this channel will be removed before it and won't have any place to discuss 🤣
+
+{Reactions}
+👍 
+
+[08/25/2024 09:02] ubl4nk
+Don't try, you won't get any answer until you don't have the backstage/SR rule.
+
+
+[08/25/2024 09:06] ubl4nk
+With most probability, your issue has not even moved to judge repository and during the first phase, it is rejected/invalidated by validators (no one knows why)
+
+
+[08/25/2024 12:51] 0xhelium
+If you have SR you will know why it was rejected . But you don’t so you can’t know
+
+
+[08/26/2024 07:38] xkeywordx
+Okay, since I do not have the role, I just want to hear your thoughts guys. Based on what I said above, do you think this should be an issue or not? I think it should, but since I submitted this exact finding and it wasn't validated, I want to understand why it is not considered an issue.
+
+Maybe just throw your thoughts around since you all participated in the competition.
+
+
+[08/26/2024 07:40] xkeywordx
+why would this be guarded by the SR role. This is my point, this feedback loop is probably one of the most important thing for someone like me. Knowing why my finding was a false positive is important so that I can understand and improve.
+
+Right now the feedback loop doesn't exist, because it is guarded by the SR role, which I think it's a bad design choice for the platform.
+
+
+[08/26/2024 07:43] xkeywordx
+In all honesty, I just want to understand **why** this "issue" is not an issue. Anyone from the sponsor's team or the judge or anyone else, please, just look 1 more time into this finding and please tell me why it is invalid. Where does the sponsor say that this is the intended behavior of the protocol? Is this **how** it should work?
+
+please @MiloTruck
+
+
+[08/26/2024 07:44] xkeywordx
+we can do this via DMs if you want to not make it publicly
+
+
+[08/26/2024 10:18] .nnez
+You can get access to the repo when the report is published
+
+
+[08/26/2024 13:28] 0xhelium
+There are other platform where you don’t need to have SR role , You can try them out if you want immediate feedback loop
+
+
+[08/26/2024 13:29] 0xhelium
+At this point you are just spamming the judge notifications tagging him up and down like that .
+
+
+[08/26/2024 13:34] xkeywordx
+I tagged the judge 1 time on 23rd of August, and 1 time today. That's 2 tags in 4 days. I wouldn't call that spam. I thought that maybe he didn't see it, that's why I did the 2nd tag today.
+
+
+[08/26/2024 13:35] 0xhelium
+You won’t get an answer . The verdict is final
+
+
+[08/26/2024 13:35] xkeywordx
+that's exactly the problem, lol
+
+
+[08/26/2024 13:35] 0xhelium
+Since you won’t get an answer and you are still tagging him it’s spam’
+
+
+[08/26/2024 13:36] 0xhelium
+If you think this is a problem , You can try using others platforms
+
+
+[08/26/2024 13:37] 0xhelium
+Where maybe judge will answer you after final results ..,,
+
+
+[09/11/2024 01:17] itsmetechjay
+ℹ️ This channel is pending archive.   As a result, any private threads will be permanently deleted on Tuesday, 01 October 2024.  Please make sure to grab anything you might need before then.
+
+{Reactions}
+cat 
+
+[09/17/2024 11:10] 18a6
+when can we expect the final report?
+
+
+[09/27/2024 20:21] tpiliposian
+Have the payouts for this contest been completed?
+
+
+[09/30/2024 13:37] itsmetechjay
+ℹ️ Reminder: this channel will be deleted after 24 hours.
+
+
+[09/30/2024 13:41] thebrittfactor
+Yes, all awards have been sent to wardens who have completed their tax information by the required due date noted [here](https://discord.com/channels/810916927919620096/1260968277035843607/1276254310455312558). Please note, if you are part of a team, **all** team members need to complete their information in order to receive payment.
+
+{Reactions}
+❤️ 
+
+[09/30/2024 13:48] tpiliposian
+Thanks for the answer, ser.
+Can you please check DMs?
+
+
+==============================================================
+Exported 246 message(s)
+==============================================================
